@@ -2,6 +2,9 @@ package model;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Premissa {
@@ -11,10 +14,10 @@ public class Premissa {
 	private FloatProperty orcamento;
 	
 	public Premissa(String origem, String destino, int qtdPassageiros, float orcamento){
-		this.origem.set(origem);
-		this.destino.set(destino);
-		this.qtdPassageiros.set(qtdPassageiros);
-		this.orcamento.set(orcamento);
+		this.origem = new SimpleStringProperty(origem);
+		this.destino = new SimpleStringProperty(destino);
+		this.qtdPassageiros = new SimpleIntegerProperty(qtdPassageiros);
+		this.orcamento = new SimpleFloatProperty(orcamento);
 	}
 	
 	public StringProperty getOrigemProperty() {
@@ -53,4 +56,10 @@ public class Premissa {
 	public void setOrcamento(float orcamento) {
 		this.orcamento.set(orcamento);
 	}
+	@Override
+	public String toString() {
+		return "Regra ["+this.getOrigem()+", "+this.getDestino()
+				+", "+this.getQtdPassageiros()+", "+this.getOrcamento()+"]";
+	}
+	
 }

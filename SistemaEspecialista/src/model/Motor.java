@@ -17,11 +17,19 @@ public class Motor {
 		this.regras.clear();
 		this.premissa = null;
 	}
-	public void getRegras(ArrayList<Regra> regras){
+	public void setRegras(ArrayList<Regra> regras){
 		this.regras.addAll(regras);
 	}
+	public void setPremissa(Premissa premissa){
+		this.premissa = premissa;
+	}
 	
-	public Regra buscaAND(){
-		
+	public ObservableList<Regra> buscaAND(){
+		ObservableList<Regra> retorno = FXCollections.observableArrayList();
+		for(Regra regra : this.regras){
+			if(regra.comparar(premissa))
+				retorno.add(regra);
+		}
+		return retorno;
 	}
 }
