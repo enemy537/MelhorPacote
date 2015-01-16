@@ -57,5 +57,14 @@ public class MenuGeral extends MenuBar {
 				
 			}
 		});
+		
+		executar.setOnAction(new EventHandler() {
+
+			@Override
+			public void handle(Event arg0) {
+				getScene().setRoot(new Executar());
+				
+			}
+		});
 	}
 }
