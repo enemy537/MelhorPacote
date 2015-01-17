@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import banco.Banco;
 import app.Main;
 import model.Regra;
@@ -9,18 +11,24 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class Executar extends BorderPane{
 	
@@ -31,13 +39,20 @@ public class Executar extends BorderPane{
 	
 	public Executar(){
 		
-		destinoLista = FXCollections.observableArrayList("Maceio", "Palmeira");
-		origemLista = FXCollections.observableArrayList("Miami", "Breu");
-		qtdPassLista = FXCollections.observableArrayList("1", "2", "3");
-		orcamentoLista = FXCollections.observableArrayList("Menos de R$ 800", "Entre R$ 800 e R$ 1500", "Mais de R$ 2000");
-		
 		MenuGeral vboxtop = new MenuGeral();
 		Banco banco = Main.getBanco();
+
+		
+		if (destinoLista == null) {
+			destinoLista = FXCollections.observableArrayList("Nenhum destino cadastrado");
+		}else {destinoLista = FXCollections.observableArrayList(banco.listarDestinos());}
+		
+		if (origemLista == null){
+			origemLista = FXCollections.observableArrayList("Nenhuma origem cadastrado");
+		}else {origemLista = FXCollections.observableArrayList(banco.listarOrigens());}
+		
+		qtdPassLista = FXCollections.observableArrayList("1","2","3","4","5","6","7");
+		orcamentoLista = FXCollections.observableArrayList("Menos de R$ 800", "Entre R$ 800 e R$ 1500", "Mais de R$ 2000");
 		
 		destinoTitle = new Label("Para onde você quer ir ?");
 		destino = new ComboBox();
@@ -62,6 +77,57 @@ public class Executar extends BorderPane{
 		ir = new Button("Tácalhepau");
 		cancelar = new Button("Cancelar");
 		
+		ir.setOnAction(new EventHandler() {
+
+			@Override
+			public void handle(Event arg0) {
+				final Stage stage = new Stage();
+
+                //create root node of scene, i.e. group
+
+                Group rootGroup = new Group();
+
+                //create scene with set width, height and color
+
+                Scene scene = new Scene(rootGroup, 200, 200, Color.WHITESMOKE);
+
+                //set scene to stage
+
+                stage.setScene(scene);
+
+                //center stage on screen
+
+                stage.centerOnScreen();
+
+                //show the stage
+
+                stage.show();
+
+                //add some node to scene
+
+                Text text = new Text(20, 110, "JavaFX");
+
+                text.setFill(Color.DODGERBLUE);
+
+                text.setEffect(new Lighting());
+
+                text.setFont(Font.font(Font.getDefault().getFamily(), 50));
+
+                //add text to the main root group
+
+                rootGroup.getChildren().add(text);
+				
+			}
+		});
+		
+		cancelar.setOnAction(new EventHandler() {
+
+			@Override
+			public void handle(Event arg0) {
+				getScene().setRoot(new TelaPrincipal());
+				
+			}
+		});
 		
 		VBox vbox1 = new VBox(20);
 		vbox1.getChildren().addAll(destinoTitle, destino);

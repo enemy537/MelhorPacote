@@ -2,6 +2,7 @@ package view;
 
 import java.text.ParseException;
 
+import banco.Banco;
 import app.Main;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -47,6 +48,7 @@ public class MenuGeral extends MenuBar {
 				getScene().setRoot(new ListarRegras());
 				
 			}
+			
 		});
 		
 		ajuda.setOnAction(new EventHandler() {

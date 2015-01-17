@@ -69,7 +69,6 @@ public class CadastrarRegra extends BorderPane{
 			@Override
 			public void handle(Event arg0) {
 				getScene().setRoot(new TelaPrincipal());
-				
 			}
 		});
 		
