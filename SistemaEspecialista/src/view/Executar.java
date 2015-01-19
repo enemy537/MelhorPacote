@@ -48,7 +48,7 @@ public class Executar extends BorderPane{
 		}else {destinoLista = FXCollections.observableArrayList(banco.listarDestinos());}
 		
 		if (origemLista == null){
-			origemLista = FXCollections.observableArrayList("Nenhuma origem cadastrado");
+			origemLista = FXCollections.observableArrayList("Nenhuma origem cadastrada");
 		}else {origemLista = FXCollections.observableArrayList(banco.listarOrigens());}
 		
 		qtdPassLista = FXCollections.observableArrayList("1","2","3","4","5","6","7");
@@ -74,7 +74,7 @@ public class Executar extends BorderPane{
 		orcamento.setItems(orcamentoLista);
 		orcamento.setPromptText("Orçamento");
 		
-		ir = new Button("Tácalhepau");
+		ir = new Button("Gerar pacote");
 		cancelar = new Button("Cancelar");
 		
 		ir.setOnAction(new EventHandler() {
@@ -89,7 +89,7 @@ public class Executar extends BorderPane{
 
                 //create scene with set width, height and color
 
-                Scene scene = new Scene(rootGroup, 200, 200, Color.WHITESMOKE);
+                Scene scene = new Scene(rootGroup, 500, 400, Color.WHITESMOKE);
 
                 //set scene to stage
 
@@ -105,13 +105,14 @@ public class Executar extends BorderPane{
 
                 //add some node to scene
 
-                Text text = new Text(20, 110, "JavaFX");
+                Text text = new Text(10, 50, "O melhor pacote para você é:");
 
                 text.setFill(Color.DODGERBLUE);
-
+                
                 text.setEffect(new Lighting());
 
-                text.setFont(Font.font(Font.getDefault().getFamily(), 50));
+                text.setFont(Font.font(Font.getDefault().getFamily(), 20));
+                
 
                 //add text to the main root group
 
@@ -149,7 +150,7 @@ public class Executar extends BorderPane{
 		botoes.getChildren().addAll(ir, cancelar);
 		botoes.setAlignment(Pos.CENTER);
 				
-		HBox hboxGeral = new HBox(50);
+		HBox hboxGeral = new HBox(30);
 		hboxGeral.getChildren().addAll(vbox1, vbox2, vbox3, vbox4, botoes);
 		hboxGeral.setPadding(new Insets(10,100,10,100));
 				
