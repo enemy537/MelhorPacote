@@ -1,56 +1,45 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-public class Regra extends Premissa {
+public class Regra {
+	private ObservableList<Object> expressao;
 	
-	private StringProperty pacote;
-	private FloatProperty fatorConfianca;
-	
-	public Regra(String origem, String destino, int qtdPassageiros, float orcamento,
-			String pacote, float fatorConfianca) {
-		
-		super(origem, destino, qtdPassageiros, orcamento);
-		this.pacote = new SimpleStringProperty(pacote);		
-		this.fatorConfianca = new SimpleFloatProperty(fatorConfianca);
+	public Regra(List<Object> expressao){
+		this.expressao = FXCollections.observableArrayList();
+		for(Object obj : expressao){
+			this.expressao.add(obj);
+		}
 	}
-	
-	public StringProperty getPacoteProperty() {
-		return pacote;
-	}
-	public FloatProperty getFatorConfiancaProperty() {
-		return fatorConfianca;
-	}
-
-	
-	public String getPacote() {
-		return pacote.get();
-	}
-	public void setPacote(String pacote) {
-		this.pacote.set(pacote);
-	}
-	public float getFatorConfianca() {
-		return fatorConfianca.get();
-	}
-	public void setFatorConfianca(float fatorConfianca) {
-		this.fatorConfianca.set(fatorConfianca);
+	public ArrayList<Fato> getPremissas(){
+		ArrayList<Fato> premissas = new ArrayList<Fato>();
+		for(Object obj : this.expressao){
+			if (obj.getClass() == new Fato("").getClass()){
+				if(!obj.equals(this.expressao.get(this.expressao.size()-1)))
+					premissas.add((Fato)obj);
+			}
+		}
+		return premissas;
 	}
 	
-	public boolean comparar(Premissa premissa){
-		return (this.getOrigem().equals(premissa.getOrcamento()) &&
-		    this.getDestino().equals(premissa.getDestino()) &&
-		    this.getQtdPassageiros() == premissa.getQtdPassageiros() &&
-		    this.getOrcamento() == premissa.getOrcamento());
+	public Fato getConclusao(){
+		return (Fato) this.expressao.get(expressao.size()-1);
 	}
 
-	@Override
-	public String toString() {
-		return "Regra ["+this.getOrigem()+", "+this.getDestino()
-				+", "+this.getQtdPassageiros()+", "+this.getOrcamento()
-				+", "+this.getPacote()+", "+this.getFatorConfianca()+"]";
+	public ObservableList<Object> getExpressao() {
+		return expressao;
+	}
+
+	public void setExpressao(ObservableList<Object> expressao) {
+		this.expressao = expressao;
 	}
 	
 	

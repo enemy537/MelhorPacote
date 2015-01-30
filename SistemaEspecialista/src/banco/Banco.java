@@ -2,7 +2,6 @@ package banco;
 
 import java.util.ArrayList;
 
-import model.Premissa;
 import model.Regra;
 
 import com.db4o.Db4oEmbedded;
@@ -63,7 +62,7 @@ public class Banco {
 			ObjectSet lista = db.query(Regra.class);
 			ArrayList<String> al = new ArrayList<String>();
 			for (int i = 0; i < lista.size(); i++) {
-				al.add(((Premissa) lista.get(i)).getDestino());
+//				al.add(((Premissa) lista.get(i)).getDestino());
 			}
 			return al;
 		}
@@ -73,7 +72,7 @@ public class Banco {
 			ObjectSet lista = db.query(Regra.class);
 			ArrayList<String> al = new ArrayList<String>();
 			for (int i = 0; i < lista.size(); i++) {
-				al.add(((Premissa) lista.get(i)).getOrigem());
+//				al.add(((Premissa) lista.get(i)).getOrigem());
 			}
 			return al;
 		}

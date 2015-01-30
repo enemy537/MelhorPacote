@@ -1,7 +1,6 @@
 package app;
 
-import java.util.ArrayList;
-
+import java.util.Arrays;
 import banco.Banco;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -10,8 +9,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import view.TelaPrincipal;
+import model.BaseRegras;
+import model.Conector;
+import model.Fato;
 import model.Motor;
-import model.Premissa;
 import model.Regra;
 
 public class Main extends Application{
@@ -47,22 +48,33 @@ public class Main extends Application{
 	}
 
 	public static void main(String[] args) {
-		Motor motor = new Motor();
+		Conector e = new Conector("E");
+		Conector ou = new Conector("OU");
+		Conector entao = new Conector("ENTÃO");
 		
-		Regra r1 = new Regra("AL", "FRIO",3,5000,"Argentina", 54);
-		Regra r2 = new Regra("AL", "FRIO",3,5000,"França", 12);
-		Regra r3 = new Regra("SP","CALOR",5,2000,"Nordeste", 89);
+		Fato A = new Fato("A");Fato B = new Fato("B");Fato C = new Fato("C");
+		Fato D = new Fato("D");Fato E = new Fato("E");Fato F = new Fato("F");
 		
-		ArrayList<Regra> regras = new ArrayList<Regra>();
-		regras.add(r1); regras.add(r2); regras.add(r3);
+		Object r1[] = {A,entao,B};
+		Regra regra1 = new Regra(Arrays.asList(r1));
+		Object r2[] = {A,entao,C};
+		Regra regra2 = new Regra(Arrays.asList(r2));
+		Object r3[] = {B,e,C,entao,D};
+		Regra regra3 = new Regra(Arrays.asList(r3));
+		Object r4[] = {D,ou,A,entao,E};
+		Regra regra4 = new Regra(Arrays.asList(r4));
+		Object r5[] = {B,entao,F};
+		Regra regra5 = new Regra(Arrays.asList(r5));
 		
-		motor.setRegras(regras);
+		BaseRegras regras = new BaseRegras();
+		regras.adicionar(regra1); regras.adicionar(regra2); regras.adicionar(regra3);
+		regras.adicionar(regra4); regras.adicionar(regra5);
 		
-		Premissa premissa = new Premissa("AL", "FRIO",3,5000);
+		System.out.println(regra3.getPremissas());
 		
-		motor.setPremissa(premissa);
+		Motor motor = new Motor(regras);
+		System.out.println(motor.inferencia(new Fato("D")));
 		
-		System.out.println(regras);
 		launch(args);
 	}
 

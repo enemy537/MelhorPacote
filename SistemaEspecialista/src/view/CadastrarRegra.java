@@ -51,15 +51,15 @@ public class CadastrarRegra extends BorderPane{
 		e2 = new Label("e");
 		
 		orcamento = new TextField();
-		orcamento.setPromptText("Orçamento");
+		orcamento.setPromptText("Orï¿½amento");
 		
-		entao = new Label("Então:");
+		entao = new Label("Entï¿½o:");
 		
 		pacote = new TextField();
 		pacote.setPromptText("Pacote");
 		
 		fatorConfianca = new TextField();
-		fatorConfianca.setPromptText("Fator Confiança");
+		fatorConfianca.setPromptText("Fator Confianï¿½a");
 
 		salvar = new Button("Salvar");
 		cancelar = new Button("Cancelar");
@@ -77,8 +77,8 @@ public class CadastrarRegra extends BorderPane{
 			@Override
 			public void handle(Event arg0) {
 				System.out.println(qtdPassageiros.getText());
-				Regra regra = new Regra(origem.getText(), destino.getText(), Integer.parseInt(qtdPassageiros.getText()), Float.parseFloat(orcamento.getText()), pacote.getText(), Float.parseFloat(fatorConfianca.getText()));
-				banco.addObjeto(regra);
+//				Regra regra = new Regra(origem.getText(), destino.getText(), Integer.parseInt(qtdPassageiros.getText()), Float.parseFloat(orcamento.getText()), pacote.getText(), Float.parseFloat(fatorConfianca.getText()));
+//				banco.addObjeto(regra);
 			}
 		});
 		
