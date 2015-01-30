@@ -70,10 +70,8 @@ public class Main extends Application{
 		regras.adicionar(regra1); regras.adicionar(regra2); regras.adicionar(regra3);
 		regras.adicionar(regra4); regras.adicionar(regra5);
 		
-		System.out.println(regra3.getPremissas());
-		
 		Motor motor = new Motor(regras);
-		System.out.println(motor.inferencia(new Fato("D")));
+		System.out.println(motor.inferencia(new Fato("E")));
 		
 		launch(args);
 	}
