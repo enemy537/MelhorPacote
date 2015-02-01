@@ -24,8 +24,8 @@ import javafx.scene.text.Font;
 
 public class CadastrarRegra extends BorderPane{
 	
-	private TextField origem, destino,qtdPassageiros, orcamento, pacote, fatorConfianca;
-	private Label se, e, e1, e2, entao;
+	private TextField texto;
+	private Label se, ajuda, exemplo;
 	private Button salvar, cancelar;
 	
 	public CadastrarRegra(){
@@ -33,33 +33,12 @@ public class CadastrarRegra extends BorderPane{
 		MenuGeral vboxtop = new MenuGeral();
 		Banco banco = Main.getBanco();
 		
+		ajuda = new Label("Utilize 'E', 'OU' e 'ENTÃO' como conectores");
+		exemplo = new Label("Ex.: SE lugar = quente OU orçamento = 500 ENTÃO pacote = X");
 		se = new Label("Se");
 		
-		origem = new TextField();
-		origem.setPromptText("Origem");
-		
-		e = new Label("e");
-		
-		destino = new TextField();
-		destino.setPromptText("Destino");
-		
-		e1 = new Label("e");
-		
-		qtdPassageiros = new TextField();
-		qtdPassageiros.setPromptText("Qtd de Passageiros");
-		
-		e2 = new Label("e");
-		
-		orcamento = new TextField();
-		orcamento.setPromptText("Orï¿½amento");
-		
-		entao = new Label("Entï¿½o:");
-		
-		pacote = new TextField();
-		pacote.setPromptText("Pacote");
-		
-		fatorConfianca = new TextField();
-		fatorConfianca.setPromptText("Fator Confianï¿½a");
+		texto = new TextField();
+		texto.setMinSize(600,30);
 
 		salvar = new Button("Salvar");
 		cancelar = new Button("Cancelar");
@@ -76,27 +55,22 @@ public class CadastrarRegra extends BorderPane{
 
 			@Override
 			public void handle(Event arg0) {
-				System.out.println(qtdPassageiros.getText());
-//				Regra regra = new Regra(origem.getText(), destino.getText(), Integer.parseInt(qtdPassageiros.getText()), Float.parseFloat(orcamento.getText()), pacote.getText(), Float.parseFloat(fatorConfianca.getText()));
-//				banco.addObjeto(regra);
+				
 			}
 		});
 		
 		HBox hbox1 = new HBox(10);
-		hbox1.getChildren().addAll(se, origem,e, destino,e1, qtdPassageiros,e2, orcamento);
+		hbox1.getChildren().addAll(se, texto);
 		
 		HBox hbox2 = new HBox(10);
-		hbox2.getChildren().addAll(entao, pacote, fatorConfianca);
-		
-		HBox hbox3 = new HBox(10);
-		hbox3.getChildren().addAll(salvar, cancelar);
+		hbox2.getChildren().addAll(salvar,cancelar);
 					
 		VBox vbox = new VBox(30);
-		vbox.getChildren().addAll(hbox1, hbox2, hbox3);
+		vbox.getChildren().addAll(ajuda,exemplo,hbox1,hbox2);
+
 		
 		hbox1.setAlignment(Pos.CENTER);
 		hbox2.setAlignment(Pos.CENTER);
-		hbox3.setAlignment(Pos.CENTER);
 		vbox.setAlignment(Pos.CENTER);
 				
 		vbox.setPadding(new Insets(10,100,10,100));

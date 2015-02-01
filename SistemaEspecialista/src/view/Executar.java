@@ -28,56 +28,21 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Executar extends BorderPane{
 	
-	private ObservableList<String> destinoLista, origemLista, qtdPassLista, orcamentoLista;
-	private ComboBox<String> destino, origem, qtdPassageiros, orcamento;
-	private Label titulo, destinoTitle, origemTitle, qtdPassTitle, orcTitle;
-	private Button ir, cancelar;
+	private Button iniciar,sim,nao;
 	
 	public Executar(){
 		
 		MenuGeral vboxtop = new MenuGeral();
 		Banco banco = Main.getBanco();
-
 		
-		if (destinoLista == null) {
-			destinoLista = FXCollections.observableArrayList("Nenhum destino cadastrado");
-		}else {destinoLista = FXCollections.observableArrayList(banco.listarDestinos());}
+		iniciar = new Button("Iniciar execução");
 		
-		if (origemLista == null){
-			origemLista = FXCollections.observableArrayList("Nenhuma origem cadastrada");
-		}else {origemLista = FXCollections.observableArrayList(banco.listarOrigens());}
-		
-		qtdPassLista = FXCollections.observableArrayList("1","2","3","4","5","6","7");
-		orcamentoLista = FXCollections.observableArrayList("Menos de R$ 800", "Entre R$ 800 e R$ 1500", "Mais de R$ 2000");
-		
-		destinoTitle = new Label("Para onde você quer ir ?");
-		destino = new ComboBox();
-		destino.setItems(destinoLista);
-		destino.setPromptText("Destino");
-		
-		origemTitle = new Label("Saindo de onde ?");
-		origem = new ComboBox();
-		origem.setItems(origemLista);
-		origem.setPromptText("Origem");
-		
-		qtdPassTitle = new Label("Quantas pessoas vão ?");
-		qtdPassageiros = new ComboBox();
-		qtdPassageiros.setItems(qtdPassLista);
-		qtdPassageiros.setPromptText("Quantidade de Passageiros");
-		
-		orcTitle = new Label("Quer gastar quanto ?");
-		orcamento = new ComboBox();
-		orcamento.setItems(orcamentoLista);
-		orcamento.setPromptText("Orçamento");
-		
-		ir = new Button("Gerar pacote");
-		cancelar = new Button("Cancelar");
-		
-		ir.setOnAction(new EventHandler() {
+		iniciar.setOnAction(new EventHandler() {
 
 			@Override
 			public void handle(Event arg0) {
@@ -89,7 +54,7 @@ public class Executar extends BorderPane{
 
                 //create scene with set width, height and color
 
-                Scene scene = new Scene(rootGroup, 500, 400, Color.WHITESMOKE);
+                Scene scene = new Scene(rootGroup, 500, 200, Color.WHITESMOKE);
 
                 //set scene to stage
 
@@ -104,54 +69,40 @@ public class Executar extends BorderPane{
                 stage.show();
 
                 //add some node to scene
-
-                Text text = new Text(10, 50, "O melhor pacote para você é:");
+                
+                
+                Text text = new Text(10, 50, "Você gosta de praia?");
 
                 text.setFill(Color.DODGERBLUE);
                 
+                text.setX(160);
                 text.setEffect(new Lighting());
 
                 text.setFont(Font.font(Font.getDefault().getFamily(), 20));
                 
-
+                sim = new Button("Sim");
+                nao = new Button("Não");
+                
+                HBox botoes = new HBox(20);
+                botoes.getChildren().addAll(sim,nao);
+                botoes.setLayoutX(200);
+                botoes.setLayoutY(90);
+                
                 //add text to the main root group
-
+                rootGroup.getChildren().add(botoes);
                 rootGroup.getChildren().add(text);
-				
+                
+	
 			}
 		});
 		
-		cancelar.setOnAction(new EventHandler() {
-
-			@Override
-			public void handle(Event arg0) {
-				getScene().setRoot(new TelaPrincipal());
-				
-			}
-		});
 		
 		VBox vbox1 = new VBox(20);
-		vbox1.getChildren().addAll(destinoTitle, destino);
+		vbox1.getChildren().addAll(iniciar);
 		vbox1.setAlignment(Pos.CENTER);
-		
-		VBox vbox2 = new VBox(20);
-		vbox2.getChildren().addAll(origemTitle, origem);
-		vbox2.setAlignment(Pos.CENTER);
-		
-		VBox vbox3 = new VBox(20);
-		vbox3.getChildren().addAll(qtdPassTitle, qtdPassageiros);
-		vbox3.setAlignment(Pos.CENTER);
-		
-		VBox vbox4 = new VBox(20);
-		vbox4.getChildren().addAll(orcTitle, orcamento);
-		vbox4.setAlignment(Pos.CENTER);
-		
-		VBox botoes = new VBox(20);
-		botoes.getChildren().addAll(ir, cancelar);
-		botoes.setAlignment(Pos.CENTER);
-				
+	
 		HBox hboxGeral = new HBox(30);
-		hboxGeral.getChildren().addAll(vbox1, vbox2, vbox3, vbox4, botoes);
+		hboxGeral.getChildren().addAll(vbox1);
 		hboxGeral.setPadding(new Insets(10,100,10,100));
 				
 		setCenter(hboxGeral);
