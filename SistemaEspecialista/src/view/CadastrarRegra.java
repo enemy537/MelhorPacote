@@ -1,7 +1,13 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import banco.Banco;
 import app.Main;
+import model.Conector;
+import model.Fato;
 import model.Regra;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +33,38 @@ public class CadastrarRegra extends BorderPane{
 	private TextField texto;
 	private Label se, ajuda, exemplo;
 	private Button salvar, cancelar;
+	
+	public void trataString(String stringOriginal){
+		
+		ArrayList<Object> lista = new ArrayList<Object>();
+		
+		String conclusao = stringOriginal.split("ENTÃO")[1];
+		
+		String[] stringComSplit = stringOriginal.split(" ");
+		
+		String premissa = "";
+		
+		for (String string : stringComSplit) {
+			
+			if (!(string.equals("E") || string.equals("OU") || string.equals("ENTÃO"))) {
+				premissa += string + " ";
+			} else {
+				Fato f = new Fato(premissa);
+				lista.add(f);
+				
+				Conector c = new Conector(string);
+				lista.add(c);
+				
+				premissa = "";
+			}
+		}
+		
+		Fato concl = new Fato(conclusao);
+		lista.add(concl);
+			
+		Regra r = new Regra(lista);
+		System.out.println(r);
+	}
 	
 	public CadastrarRegra(){
 		
@@ -55,7 +93,7 @@ public class CadastrarRegra extends BorderPane{
 
 			@Override
 			public void handle(Event arg0) {
-				
+				trataString(texto.getText());
 			}
 		});
 		
@@ -78,4 +116,6 @@ public class CadastrarRegra extends BorderPane{
 		setCenter(vbox);
 		setTop(vboxtop);     //Setando menuBar sempre no topo
 	}
+	
+	
 }
