@@ -23,5 +23,8 @@ public class Conector {
 		this.valorProperty().set(valor);
 	}
 	
-	
+	@Override
+	public String toString() {
+		return valor.get();
+	}
 }

@@ -42,5 +42,12 @@ public class Regra {
 		this.expressao = expressao;
 	}
 	
-	
+	@Override
+	public String toString() {
+		String str = "";
+		for (Object object : expressao) {
+			str += object + " ";
+		}
+		return str;
+	}
 }

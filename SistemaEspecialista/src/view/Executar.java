@@ -48,54 +48,52 @@ public class Executar extends BorderPane{
 			public void handle(Event arg0) {
 				final Stage stage = new Stage();
 
-                //create root node of scene, i.e. group
+		        //create root node of scene, i.e. group
 
-                Group rootGroup = new Group();
+		        Group rootGroup = new Group();
 
-                //create scene with set width, height and color
+		        //create scene with set width, height and color
 
-                Scene scene = new Scene(rootGroup, 500, 200, Color.WHITESMOKE);
+		        Scene scene = new Scene(rootGroup, 500, 200, Color.WHITESMOKE);
 
-                //set scene to stage
+		        //set scene to stage
 
-                stage.setScene(scene);
+		        stage.setScene(scene);
 
-                //center stage on screen
+		        //center stage on screen
 
-                stage.centerOnScreen();
+		        stage.centerOnScreen();
 
-                //show the stage
+		        //show the stage
 
-                stage.show();
+		        stage.show();
 
-                //add some node to scene
-                
-                
-                Text text = new Text(10, 50, "Você gosta de praia?");
+		        //add some node to scene
+		        
+		        
+		        Text text = new Text(10, 50, "Você gosta de praia?");
 
-                text.setFill(Color.DODGERBLUE);
-                
-                text.setX(160);
-                text.setEffect(new Lighting());
+		        text.setFill(Color.DODGERBLUE);
+		        
+		        text.setX(160);
+		        text.setEffect(new Lighting());
 
-                text.setFont(Font.font(Font.getDefault().getFamily(), 20));
-                
-                sim = new Button("Sim");
-                nao = new Button("Não");
-                
-                HBox botoes = new HBox(20);
-                botoes.getChildren().addAll(sim,nao);
-                botoes.setLayoutX(200);
-                botoes.setLayoutY(90);
-                
-                //add text to the main root group
-                rootGroup.getChildren().add(botoes);
-                rootGroup.getChildren().add(text);
-                
-	
+		        text.setFont(Font.font(Font.getDefault().getFamily(), 20));
+		        
+		        sim = new Button("Sim");
+		        nao = new Button("Não");
+		        
+		        HBox botoes = new HBox(20);
+		        botoes.getChildren().addAll(sim,nao);
+		        botoes.setLayoutX(200);
+		        botoes.setLayoutY(90);
+		        
+		        //add text to the main root group
+		        rootGroup.getChildren().add(botoes);
+		        rootGroup.getChildren().add(text);
+				
 			}
 		});
-		
 		
 		VBox vbox1 = new VBox(20);
 		vbox1.getChildren().addAll(iniciar);

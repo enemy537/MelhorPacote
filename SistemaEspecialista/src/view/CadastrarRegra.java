@@ -33,8 +33,9 @@ public class CadastrarRegra extends BorderPane{
 	private TextField texto;
 	private Label se, ajuda, exemplo;
 	private Button salvar, cancelar;
+	private Banco banco = Main.getBanco();
 	
-	public void trataString(String stringOriginal){
+	public Regra trataString(String stringOriginal){
 		
 		ArrayList<Object> lista = new ArrayList<Object>();
 		
@@ -63,7 +64,7 @@ public class CadastrarRegra extends BorderPane{
 		lista.add(concl);
 			
 		Regra r = new Regra(lista);
-		System.out.println(r);
+		return r;
 	}
 	
 	public CadastrarRegra(){
@@ -72,7 +73,7 @@ public class CadastrarRegra extends BorderPane{
 		Banco banco = Main.getBanco();
 		
 		ajuda = new Label("Utilize 'E', 'OU' e 'ENTÃO' como conectores");
-		exemplo = new Label("Ex.: SE lugar = quente OU orçamento = 500 ENTÃO pacote = X");
+		exemplo = new Label("Ex.: SE gosta de praia OU quer gastar até R$ 500 ENTÃO pacote = X");
 		se = new Label("Se");
 		
 		texto = new TextField();
@@ -93,7 +94,7 @@ public class CadastrarRegra extends BorderPane{
 
 			@Override
 			public void handle(Event arg0) {
-				trataString(texto.getText());
+				banco.addObjeto(trataString(texto.getText()));
 			}
 		});
 		
