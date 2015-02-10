@@ -1,6 +1,9 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import view.Pergunta;
 import bsh.EvalError;
 import bsh.Interpreter;
 
@@ -8,11 +11,13 @@ public class Motor {
 	private BaseRegras baseRegras;
 	private MemoriaFatos memoriaFatos;
 	private Interpreter interpretador;
+	private int regrasRestantes;
 	
 	public Motor(BaseRegras baseRegras){
 		this.baseRegras = baseRegras;
 		this.memoriaFatos = new MemoriaFatos();
 		this.interpretador = new Interpreter();
+		this.regrasRestantes = baseRegras.getRegras().size() - 1;
 	}
 	
 	public Fato provar(Regra regra){
@@ -55,10 +60,8 @@ public class Motor {
 					}
 				}
 			}else{
-				Scanner scanner = new Scanner(System.in);
-				System.out.println("Qual o valor de "+fato.getNome()+": ");
-				String entrada = scanner.nextLine();
-				boolean valor = Boolean.parseBoolean(entrada);
+				Pergunta pergunta = new Pergunta(fato.getNome()+"?");
+				boolean valor = pergunta.decisao;
 				fato.setValor(valor);
 				this.memoriaFatos.inserir(fato);
 				return fato;
@@ -67,5 +70,16 @@ public class Motor {
 		return fato;
 	}
 	
+	public ArrayList<Object> novaPergunta(){
+		ArrayList<Object> array = new ArrayList<Object>();
+		if(regrasRestantes >= 0){
+			Fato retorno = this.inferencia(baseRegras.getRegras().get(regrasRestantes).getConclusao());
+			regrasRestantes -= 1;
+			array.add(retorno); array.add(true);
+		}else{
+			array.add(false);
+		}
+		return array;
+	}
 	
 }

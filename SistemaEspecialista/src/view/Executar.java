@@ -30,7 +30,7 @@ public class Executar extends BorderPane{
 			@Override
 			public void handle(Event arg0) {
 				motor = new Motor(banco.listarRegras());
-				Pergunta p = new Pergunta("testando");
+				motor.novaPergunta();
 			}
 		});
 		
