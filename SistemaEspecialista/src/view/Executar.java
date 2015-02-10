@@ -31,6 +31,7 @@ public class Executar extends BorderPane{
 			public void handle(Event arg0) {
 				motor = new Motor(banco.listarRegras());
 				motor.novaPergunta();
+				
 			}
 		});
 		

@@ -61,10 +61,12 @@ public class Motor {
 				}
 			}else{
 				Pergunta pergunta = new Pergunta(fato.getNome()+"?");
-				boolean valor = pergunta.decisao;
+				boolean valor;
+				valor = pergunta.decisao;
 				fato.setValor(valor);
 				this.memoriaFatos.inserir(fato);
 				return fato;
+				
 			}
 		}
 		return fato;
