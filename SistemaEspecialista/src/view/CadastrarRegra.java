@@ -73,7 +73,7 @@ public class CadastrarRegra extends BorderPane{
 		Banco banco = Main.getBanco();
 		
 		ajuda = new Label("Utilize 'E', 'OU' e 'ENTAO' como conectores");
-		exemplo = new Label("Ex.: SE gosta de praia OU quer gastar ate R$ 500 ENTEO pacote = X");
+		exemplo = new Label("Ex.: SE gosta de praia OU quer gastar ate R$ 500 ENTAO pacote = X");
 		se = new Label("Se");
 		
 		texto = new TextField();

@@ -19,13 +19,15 @@ public class Motor {
 		this.interpretador = new Interpreter();
 		this.regrasRestantes = baseRegras.getRegras().size() - 1;
 	}
-	
+	public void limparMemoria(){
+		this.memoriaFatos.clear();
+	}
 	public Fato provar(Regra regra){
 		String string = "";
 		for(Object obj : regra.getExpressao()){
 			if(obj.getClass() == new Conector("").getClass()){
 				String valor = ((Conector) obj).getValor();
-				if(valor.equals("ENTÃO")){
+				if(valor.equals("ENTAO")){
 					try {
 						Fato retorno = regra.getConclusao();
 						retorno.setValor((boolean) interpretador.eval(string));
@@ -61,7 +63,7 @@ public class Motor {
 				}
 			}else{
 				Pergunta pergunta = new Pergunta(fato.getNome()+"?");
-				boolean valor = pergunta.decisao;
+				boolean valor = pergunta.getDecisao();
 				fato.setValor(valor);
 				this.memoriaFatos.inserir(fato);
 				return fato;

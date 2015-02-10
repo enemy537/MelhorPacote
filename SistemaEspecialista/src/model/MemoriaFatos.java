@@ -8,6 +8,9 @@ public class MemoriaFatos {
 	public MemoriaFatos(){
 		this.lista = new ArrayList<Fato>();
 	}
+	public void clear(){
+		this.lista.clear();
+	}
 	public void inserir(Fato fato){
 		this.lista.add(fato);
 	}

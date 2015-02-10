@@ -37,15 +37,27 @@ public class Executar extends BorderPane{
 			@Override
 			public void handle(Event arg0) {
 				motor = new Motor(banco.listarRegras());
+				motor.limparMemoria();
 				ArrayList<Object> retorno = motor.novaPergunta();
-				if(retorno.size() == 2){
-					Dialogs.create()
-					.title("Melhor Pacote para você")
-					.masthead(null)
-					.message(((Fato)retorno.get(0)).toString())
-					.showInformation();
+				while(true){
+					if(retorno.size() == 2 && ((Fato)retorno.get(0)).getValor() == true){
+						Dialogs.create()
+						.title("Melhor Pacote para você")
+						.masthead(null)
+						.message(((Fato)retorno.get(0)).toString())
+						.showInformation();
+						break;
+					}else if(retorno.size() == 2 && ((Fato)retorno.get(0)).getValor() == false){
+						retorno = motor.novaPergunta();
+					}else{
+						Dialogs.create()
+						.title("Nenhum pacote encontrado.")
+						.masthead(null)
+						.message("Nenhum pacote se adequa a suas necessidades.")
+						.showInformation();
+						break;
+					}
 				}
-				
 			}
 		});
 		

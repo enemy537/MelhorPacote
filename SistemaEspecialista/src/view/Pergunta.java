@@ -1,10 +1,5 @@
 package view;
-import java.sql.Time;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
-
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -29,7 +24,7 @@ public class Pergunta extends BorderPane{
 	private TextField campo;
 	
 	public Boolean decisao;
-	
+
 	public Pergunta(String pergunta){
 		stage = new Stage();
 		rootGroup = new Group();
@@ -78,6 +73,9 @@ public class Pergunta extends BorderPane{
 		}
 	    
 	    
+	}
+	public Boolean getDecisao() {
+		return decisao;
 	}
 
 	
