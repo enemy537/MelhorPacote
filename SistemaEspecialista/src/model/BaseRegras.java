@@ -20,4 +20,9 @@ public class BaseRegras {
 		}
 		return null;
 	}
+
+	public ArrayList<Regra> getRegras() {
+		return regras;
+	}
+	
 }

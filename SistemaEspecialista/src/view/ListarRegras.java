@@ -22,7 +22,7 @@ public class ListarRegras extends BorderPane{
 		
 		MenuGeral menu = new MenuGeral();
 		
-		listaRegrasTabela = FXCollections.observableArrayList(banco.listarRegras());
+		listaRegrasTabela = FXCollections.observableArrayList(banco.listarRegras().getRegras());
 		
 		TableColumn expressao = new TableColumn();
 		expressao.setText("Regra");

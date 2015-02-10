@@ -2,6 +2,7 @@ package banco;
 
 import java.util.ArrayList;
 
+import model.BaseRegras;
 import model.Fato;
 import model.Regra;
 
@@ -46,13 +47,13 @@ public class Banco {
 		
 		
 		// Lista regras
-		public ArrayList<Regra> listarRegras(){
+		public BaseRegras listarRegras(){
 
 			ObjectSet listaDoBanco = db.query(Regra.class);
-			ArrayList<Regra> listaRegras = new ArrayList<>();
+			BaseRegras listaRegras = new BaseRegras();
 			
 			for (int i = 0; i < listaDoBanco.size(); i++) {
-				listaRegras.add((Regra) listaDoBanco.get(i));
+				listaRegras.adicionar((Regra) listaDoBanco.get(i));
 			}
 			return listaRegras;
 		}

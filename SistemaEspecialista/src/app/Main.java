@@ -48,31 +48,6 @@ public class Main extends Application{
 	}
 
 	public static void main(String[] args) {
-//		Conector e = new Conector("E");
-//		Conector ou = new Conector("OU");
-//		Conector entao = new Conector("ENTÃO");
-//		
-//		Fato A = new Fato("A");Fato B = new Fato("B");Fato C = new Fato("C");
-//		Fato D = new Fato("D");Fato E = new Fato("E");Fato F = new Fato("F");
-//		
-//		Object r1[] = {A,entao,B};
-//		Regra regra1 = new Regra(Arrays.asList(r1));
-//		Object r2[] = {A,entao,C};
-//		Regra regra2 = new Regra(Arrays.asList(r2));
-//		Object r3[] = {B,e,C,entao,D};
-//		Regra regra3 = new Regra(Arrays.asList(r3));
-//		Object r4[] = {D,ou,A,entao,E};
-//		Regra regra4 = new Regra(Arrays.asList(r4));
-//		Object r5[] = {B,entao,F};
-//		Regra regra5 = new Regra(Arrays.asList(r5));
-//		
-//		BaseRegras regras = new BaseRegras();
-//		regras.adicionar(regra1); regras.adicionar(regra2); regras.adicionar(regra3);
-//		regras.adicionar(regra4); regras.adicionar(regra5);
-//		
-//		Motor motor = new Motor(regras);
-//		System.out.println(motor.inferencia(new Fato("E")));
-		
 		launch(args);
 	}
 
