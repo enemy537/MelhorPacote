@@ -26,10 +26,11 @@ public class Executar extends BorderPane{
 		iniciar = new Button("Iniciar execução");
 		
 		iniciar.setOnAction(new EventHandler() {
-
+			
 			@Override
 			public void handle(Event arg0) {
 				motor = new Motor(banco.listarRegras());
+				Pergunta p = new Pergunta("testando");
 			}
 		});
 		

@@ -1,5 +1,8 @@
 package view;
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +20,7 @@ public class Pergunta extends BorderPane{
 	private Scene scene;
 	private Text text;
 	private Button sim,nao;
+	public Boolean decisao;
 	
 	public Pergunta(String pergunta){
 		stage = new Stage();
@@ -24,6 +28,25 @@ public class Pergunta extends BorderPane{
 		scene = new Scene(rootGroup, 500, 200, Color.WHITESMOKE);
 		sim = new Button("Sim");
 	    nao = new Button("Não");
+	   
+	    
+	    sim.setOnAction(new EventHandler() {
+			
+			@Override
+			public void handle(Event arg0) {
+				decisao = true;
+				stage.close();
+			}
+		});
+	    
+	    nao.setOnAction(new EventHandler() {
+			
+			@Override
+			public void handle(Event arg0) {
+				decisao = false;
+				stage.close();
+			}
+		});
 	    
 		stage.setScene(scene);
 	    stage.centerOnScreen();
