@@ -1,7 +1,14 @@
 package view;
 
+import java.util.ArrayList;
+
+import org.controlsfx.dialog.Dialog;
+import org.controlsfx.dialog.Dialogs;
+
+import model.Fato;
 import model.Motor;
 import banco.Banco;
+import EDU.purdue.cs.bloat.tree.SRStmt;
 import app.Main;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -30,7 +37,14 @@ public class Executar extends BorderPane{
 			@Override
 			public void handle(Event arg0) {
 				motor = new Motor(banco.listarRegras());
-				motor.novaPergunta();
+				ArrayList<Object> retorno = motor.novaPergunta();
+				if(retorno.size() == 2){
+					Dialogs.create()
+					.title("Melhor Pacote para você")
+					.masthead(null)
+					.message(((Fato)retorno.get(0)).toString())
+					.showInformation();
+				}
 				
 			}
 		});

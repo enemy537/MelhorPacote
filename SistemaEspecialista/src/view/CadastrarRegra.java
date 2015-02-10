@@ -39,7 +39,7 @@ public class CadastrarRegra extends BorderPane{
 		
 		ArrayList<Object> lista = new ArrayList<Object>();
 		
-		String conclusao = stringOriginal.split("ENTÃO")[1];
+		String conclusao = stringOriginal.split("ENTAO")[1];
 		
 		String[] stringComSplit = stringOriginal.split(" ");
 		
@@ -47,7 +47,7 @@ public class CadastrarRegra extends BorderPane{
 		
 		for (String string : stringComSplit) {
 			
-			if (!(string.equals("E") || string.equals("OU") || string.equals("ENTÃO"))) {
+			if (!(string.equals("E") || string.equals("OU") || string.equals("ENTAO"))) {
 				premissa += string + " ";
 			} else {
 				Fato f = new Fato(premissa);
@@ -72,8 +72,8 @@ public class CadastrarRegra extends BorderPane{
 		MenuGeral vboxtop = new MenuGeral();
 		Banco banco = Main.getBanco();
 		
-		ajuda = new Label("Utilize 'E', 'OU' e 'ENTÃO' como conectores");
-		exemplo = new Label("Ex.: SE gosta de praia OU quer gastar até R$ 500 ENTÃO pacote = X");
+		ajuda = new Label("Utilize 'E', 'OU' e 'ENTAO' como conectores");
+		exemplo = new Label("Ex.: SE gosta de praia OU quer gastar ate R$ 500 ENTEO pacote = X");
 		se = new Label("Se");
 		
 		texto = new TextField();
