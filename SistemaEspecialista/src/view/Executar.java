@@ -10,6 +10,7 @@ import model.Motor;
 import banco.Banco;
 import EDU.purdue.cs.bloat.tree.SRStmt;
 import app.Main;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -38,27 +39,25 @@ public class Executar extends BorderPane{
 			public void handle(Event arg0) {
 				motor = new Motor(banco.listarRegras());
 				motor.limparMemoria();
-				ArrayList<Object> retorno = motor.novaPergunta();
-				while(true){
-					if(retorno.size() == 2 && ((Fato)retorno.get(0)).getValor() == true){
-						Dialogs.create()
-						.title("Melhor Pacote para você")
-						.masthead(null)
-						.message(((Fato)retorno.get(0)).toString())
-						.showInformation();
-						break;
-					}else if(retorno.size() == 2 && ((Fato)retorno.get(0)).getValor() == false){
-						retorno = motor.novaPergunta();
-					}else{
-						Dialogs.create()
-						.title("Nenhum pacote encontrado.")
-						.masthead(null)
-						.message("Nenhum pacote se adequa a suas necessidades.")
-						.showInformation();
-						break;
+				ObservableList<String> respostas = motor.executar();
+				if(respostas.size() == 0){
+					Dialogs.create()
+					.title("Nenhum pacote encontrado.")
+					.masthead(null)
+					.message("Nenhum pacote se adequa a suas necessidades.")
+					.showInformation();
+				}else{
+					String saida = "";
+					for(String string : respostas){
+						saida += string + "\n";
 					}
+					Dialogs.create()
+					.title("Melhor Pacote encontrado.")
+					.masthead(null)
+					.message(saida)
+					.showInformation();
 				}
-			}
+			}	
 		});
 		
 		VBox vbox1 = new VBox(20);

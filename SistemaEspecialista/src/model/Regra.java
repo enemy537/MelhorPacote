@@ -46,7 +46,7 @@ public class Regra {
 	public String toString() {
 		String str = "";
 		for (Object object : expressao) {
-			str += object + " ";
+			str += object.toString() + " ";
 		}
 		return str;
 	}

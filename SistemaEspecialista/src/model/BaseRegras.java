@@ -20,6 +20,14 @@ public class BaseRegras {
 		}
 		return null;
 	}
+	
+	public ArrayList<Regra> copia(){
+		ArrayList<Regra> copia = new ArrayList<Regra>();
+		for(Regra regra : this.regras){
+			copia.add(regra);
+		}
+		return copia;
+	}
 
 	public ArrayList<Regra> getRegras() {
 		return regras;

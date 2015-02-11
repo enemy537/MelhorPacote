@@ -10,7 +10,7 @@ public class Fato {
 	public Fato(String nome){
 		this.nome = new SimpleStringProperty();
 		this.nome.setValue(nome);
-		this.valor = null;
+		this.valor = false;
 	}
 	
 	public Boolean getValor() {
@@ -44,7 +44,7 @@ public class Fato {
 	
 	@Override
 	public String toString() {
-		return this.getNome();
+		return this.getNome() +": "+this.getValor();
 	}
 	
 }

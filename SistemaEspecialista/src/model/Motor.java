@@ -3,6 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.controlsfx.dialog.Dialogs;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import view.Pergunta;
 import bsh.EvalError;
 import bsh.Interpreter;
@@ -41,7 +45,7 @@ public class Motor {
 						string += "|| ";
 				}
 			}else{
-				string += (this.memoriaFatos.retorna((Fato)obj)).getValor()+" ";
+				string += ((Fato)obj).getValor()+" ";
 			}
 		}
 		return null;
@@ -85,4 +89,37 @@ public class Motor {
 		return array;
 	}
 	
+	public ObservableList<String> executar(){
+		ObservableList<String> retorno = FXCollections.observableArrayList();
+		ArrayList<Object> arrayConclusoes = this.novaPergunta();
+		ArrayList<Regra> regrasMod = this.baseRegras.copia();
+		while(true){
+			if(arrayConclusoes.size() == 2 && ((Fato)arrayConclusoes.get(0)).getValor() == true){
+				for(Regra regra : regrasMod){
+					boolean regraValida = false;
+					for(Fato fato : regra.getPremissas()){
+						if(this.memoriaFatos.busca(fato) != null){
+							fato.setValor(this.memoriaFatos.busca(fato).getValor());
+							regraValida = true;
+						}
+					}
+					if(regraValida){
+						System.out.println(regra);
+						Fato prova = this.provar(regra);
+						if(prova.getValor()){
+							retorno.add(prova.getNome());
+						}
+					}
+				}
+				break;
+			}else if(arrayConclusoes.size() == 2 && ((Fato)arrayConclusoes.get(0)).getValor() == false){
+				arrayConclusoes = this.novaPergunta();
+			}else{
+				break;
+			}
+		}
+		return retorno;
+	}
+		
 }
+

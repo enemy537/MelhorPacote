@@ -34,7 +34,7 @@ public class MemoriaFatos {
 	public String toString() {
 		String retorno = "";
 		for(Fato fato : this.lista){
-			retorno += fato.toString() + "\n";
+			retorno += fato+" "+fato.getValor()+"\n";
 		}
 		return retorno;
 	}
