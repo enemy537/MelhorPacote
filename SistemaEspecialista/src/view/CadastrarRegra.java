@@ -66,7 +66,10 @@ public class CadastrarRegra extends BorderPane{
 		Regra r = new Regra(lista);
 		return r;
 	}
-	
+	//private void limpaCampos() {
+      //  texto.setText("");
+        
+//}
 	public CadastrarRegra(){
 		
 		MenuGeral vboxtop = new MenuGeral();
@@ -82,6 +85,7 @@ public class CadastrarRegra extends BorderPane{
 		salvar = new Button("Salvar");
 		cancelar = new Button("Cancelar");
 		
+		
 		cancelar.setOnAction(new EventHandler() {
 
 			@Override
@@ -91,10 +95,11 @@ public class CadastrarRegra extends BorderPane{
 		});
 		
 		salvar.setOnAction(new EventHandler() {
-
+			
 			@Override
 			public void handle(Event arg0) {
 				banco.addObjeto(trataString(texto.getText()));
+				texto.setText("");
 			}
 		});
 		
