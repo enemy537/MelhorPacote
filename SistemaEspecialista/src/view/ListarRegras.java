@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ListarRegras extends BorderPane{
@@ -35,14 +36,25 @@ public class ListarRegras extends BorderPane{
 		expressao.setCellValueFactory(new PropertyValueFactory("expressao"));
 	        
 		excluir = new Button("Excluir");
+		excluir.setStyle("-fx-base: red;");
+		
 		editar = new Button("Editar");
+		editar.setStyle("-fx-base: green;");
 		
 		tabela = new TableView();
 	    tabela.setItems(listaRegrasTabela);
 	    tabela.getColumns().addAll(expressao);
 	    
+	    HBox button = new HBox(20);
+	    button.getChildren().addAll(editar, excluir);
+	    
+	    HBox hb = new HBox();
+	    hb.getChildren().addAll(button);
+	    hb.setTranslateX(500);
+	    
+	    
 	    VBox boxTop = new VBox(20);
-		boxTop.getChildren().addAll(menu, tabela, excluir, editar);
+		boxTop.getChildren().addAll(menu, tabela, hb);
 		
 		excluir.setOnAction(new EventHandler() {
 
