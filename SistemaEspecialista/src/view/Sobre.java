@@ -15,7 +15,7 @@ public class Sobre extends BorderPane {
     
     public Sobre(){
 
-            ImageView iconeSobre = new ImageView("/image/desenvolvimento.jpg");
+            ImageView iconeSobre = new ImageView("/image/desenvolvedores.png");
             //Text sobre = new Text("Sobre");
             //sobre.setFont(new Font(40));
 

@@ -31,7 +31,7 @@ public class Executar extends BorderPane{
 		MenuGeral vboxtop = new MenuGeral();
 		Banco banco = Main.getBanco();
 		
-		iniciar = new Button("Iniciar execução");
+		iniciar = new Button("Iniciar execucao");
 		
 		iniciar.setOnAction(new EventHandler() {
 			

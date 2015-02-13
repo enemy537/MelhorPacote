@@ -4,6 +4,8 @@ import java.text.ParseException;
 
 import banco.Banco;
 import app.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
