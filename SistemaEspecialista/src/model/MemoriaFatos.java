@@ -30,11 +30,15 @@ public class MemoriaFatos {
 		}
 		return retorno;
 	}
+	
+	public ArrayList<Fato> getFatos(){
+		return this.lista;
+	}
 	@Override
 	public String toString() {
 		String retorno = "";
 		for(Fato fato : this.lista){
-			retorno += fato+" "+fato.getValor()+"\n";
+			retorno += fato+"\n";
 		}
 		return retorno;
 	}
