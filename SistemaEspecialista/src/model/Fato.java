@@ -45,7 +45,7 @@ public class Fato {
 	
 	@Override
 	public String toString() {
-		return this.getNome() +": "+this.getValor();
+		return this.getNome();
 	}
 	
 }

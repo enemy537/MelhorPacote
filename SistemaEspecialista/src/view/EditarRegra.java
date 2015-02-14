@@ -66,11 +66,8 @@ public class EditarRegra extends BorderPane{
 		Regra r = new Regra(lista);
 		return r;
 	}
-	//private void limpaCampos() {
-      //  texto.setText("");
-        
-//}
-	public EditarRegra(){
+	
+	public EditarRegra(Regra r){
 		
 		MenuGeral vboxtop = new MenuGeral();
 		Banco banco = Main.getBanco();
@@ -85,6 +82,7 @@ public class EditarRegra extends BorderPane{
 		salvar = new Button("Salvar");
 		cancelar = new Button("Cancelar");
 		
+		texto.setText(r.toString());
 		
 		cancelar.setOnAction(new EventHandler() {
 
@@ -98,6 +96,7 @@ public class EditarRegra extends BorderPane{
 			
 			@Override
 			public void handle(Event arg0) {
+				banco.excluirObjeto(r);
 				banco.addObjeto(trataString(texto.getText()));
 				texto.setText("");
 			}

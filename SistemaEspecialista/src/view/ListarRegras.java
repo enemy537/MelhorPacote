@@ -66,6 +66,14 @@ public class ListarRegras extends BorderPane{
 			}
 		});
 		
+		editar.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				Regra r = tabela.getSelectionModel().getSelectedItem();
+				getScene().setRoot(new EditarRegra(r));
+			}
+		});
 		
 		
 		setTop(boxTop);
