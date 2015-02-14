@@ -16,6 +16,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,7 +33,8 @@ public class Executar extends BorderPane{
 		MenuGeral vboxtop = new MenuGeral();
 		Banco banco = Main.getBanco();
 		
-		iniciar = new Button("Iniciar execucao");
+		Image logo = new Image(getClass().getResourceAsStream("/image/logo.png"));
+		iniciar = new Button("Iniciar busca do melhor pacote", new ImageView(logo));
 		
 		iniciar.setOnAction(new EventHandler() {
 			
@@ -64,11 +67,8 @@ public class Executar extends BorderPane{
 		vbox1.getChildren().addAll(iniciar);
 		vbox1.setAlignment(Pos.CENTER);
 	
-		HBox hboxGeral = new HBox(30);
-		hboxGeral.getChildren().addAll(vbox1);
-		hboxGeral.setPadding(new Insets(10,100,10,100));
 				
-		setCenter(hboxGeral);
+		setCenter(vbox1);
 		setTop(vboxtop);     //Setando menuBar sempre no topo
 	}
 }

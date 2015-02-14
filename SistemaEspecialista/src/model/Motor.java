@@ -66,7 +66,7 @@ public class Motor {
 					}
 				}
 			}else{
-				Pergunta pergunta = new Pergunta(fato.getNome()+"?");
+				Pergunta pergunta = new Pergunta("Você "+fato.getNome()+" ?");
 				boolean valor = pergunta.getDecisao();
 				fato.setValor(valor);
 				this.memoriaFatos.inserir(fato);
