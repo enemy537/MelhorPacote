@@ -28,7 +28,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class CadastrarRegra extends BorderPane{
+public class EditarRegra extends BorderPane{
 	
 	private TextField texto;
 	private Label se, ajuda, exemplo;
@@ -70,7 +70,7 @@ public class CadastrarRegra extends BorderPane{
       //  texto.setText("");
         
 //}
-	public CadastrarRegra(){
+	public EditarRegra(){
 		
 		MenuGeral vboxtop = new MenuGeral();
 		Banco banco = Main.getBanco();
@@ -125,3 +125,4 @@ public class CadastrarRegra extends BorderPane{
 	
 	
 }
+

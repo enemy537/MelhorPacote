@@ -4,6 +4,8 @@ import java.text.ParseException;
 
 import banco.Banco;
 import app.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -17,20 +19,24 @@ public class MenuGeral extends MenuBar {
 		Menu usuario = new Menu("Usuário");
 		Menu especialista = new Menu("Especialista");
 		Menu ajuda = new Menu("Ajuda");
-		Menu sobre = new Menu("Sobre");
 		
-		//Parte de UsuÃ¡rio
+		
+		//Parte de Usuário
 		MenuItem executar = new MenuItem("Executar");
 		
 		//Parte de Especialista
 		MenuItem novaRegra = new MenuItem("Nova Regra");
 		MenuItem regras = new MenuItem("Regras");
 
+		//Parte de Ajuda
+		MenuItem guiaTuristico = new MenuItem("Guia Turístico");
+		MenuItem desenvolvedores = new MenuItem("Desenvolvedores");
+		
 		usuario.getItems().addAll(executar);
 		especialista.getItems().addAll(novaRegra,regras);
+		ajuda.getItems().addAll(guiaTuristico, desenvolvedores);
 		
-		
-		getMenus().addAll(usuario,especialista,ajuda,sobre);
+		getMenus().addAll(usuario,especialista,ajuda);
 		
 		
 		novaRegra.setOnAction(new EventHandler() {
@@ -51,7 +57,7 @@ public class MenuGeral extends MenuBar {
 			
 		});
 		
-		ajuda.setOnAction(new EventHandler() {
+		guiaTuristico.setOnAction(new EventHandler() {
 
 			@Override
 			public void handle(Event arg0) {
@@ -59,6 +65,17 @@ public class MenuGeral extends MenuBar {
 				
 			}
 		});
+		
+		desenvolvedores.setOnAction(new EventHandler() {
+
+			@Override
+			public void handle(Event arg0) {
+				getScene().setRoot(new Sobre());
+				
+			}
+			
+		}); 
+			
 		
 		executar.setOnAction(new EventHandler() {
 
