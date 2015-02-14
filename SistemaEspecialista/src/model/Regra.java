@@ -37,6 +37,16 @@ public class Regra {
 	public ObservableList<Object> getExpressao() {
 		return expressao;
 	}
+	
+	public void setFato(Fato fato){
+		int contador = 0;
+		for(Object obj : this.expressao){
+			if(obj.getClass() == fato.getClass() && ((Fato)obj).equals(fato)){
+				expressao.set(contador, fato);
+			}
+			contador++;
+		}
+	}
 
 	public void setExpressao(ObservableList<Object> expressao) {
 		this.expressao = expressao;

@@ -25,6 +25,7 @@ public class Fato {
 		return this.nome;
 	}
 
+
 	public final java.lang.String getNome() {
 		return this.nomeProperty().get();
 	}

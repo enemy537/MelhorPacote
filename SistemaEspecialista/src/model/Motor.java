@@ -92,23 +92,14 @@ public class Motor {
 	public ObservableList<String> executar(){
 		ObservableList<String> retorno = FXCollections.observableArrayList();
 		ArrayList<Object> arrayConclusoes = this.novaPergunta();
-		ArrayList<Regra> regrasMod = this.baseRegras.copia();
+		BaseRegras regrasMod = new BaseRegras(this.baseRegras.copia());
 		while(true){
 			if(arrayConclusoes.size() == 2 && ((Fato)arrayConclusoes.get(0)).getValor() == true){
-				for(Regra regra : regrasMod){
-					boolean regraValida = false;
-					for(Fato fato : regra.getPremissas()){
-						if(this.memoriaFatos.busca(fato) != null){
-							fato.setValor(this.memoriaFatos.busca(fato).getValor());
-							regraValida = true;
-						}
-					}
-					if(regraValida){
-						System.out.println(regra);
-						Fato prova = this.provar(regra);
-						if(prova.getValor()){
-							retorno.add(prova.getNome());
-						}
+				regrasMod.alterarFatos(this.memoriaFatos.getFatos());
+				for(Regra regra : regrasMod.getRegras()){
+					Fato prova = this.provar(regra);
+					if(prova.getValor()){
+						retorno.add(prova.getNome());
 					}
 				}
 				break;
