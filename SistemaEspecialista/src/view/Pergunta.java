@@ -30,8 +30,8 @@ public class Pergunta extends BorderPane{
 	private Text text, fc, ajuda;
 	private Button ok;
 	private TextField campo;
-	
-	public Boolean decisao;
+	private float fatorCeteza;
+	private Boolean decisao;
 
 	public Pergunta(String pergunta){
 		stage = new Stage();
@@ -43,7 +43,7 @@ public class Pergunta extends BorderPane{
 		campo = new TextField();
 		campo.setPromptText("SIM ou NAO");
 		
-		fc = new Text("Fator de Confiaça:  ");
+		fc = new Text("Fator de Confiaï¿½a:  ");
 		
 		final Slider slider = new Slider();
 		slider.setMin(0);
@@ -57,6 +57,7 @@ public class Pergunta extends BorderPane{
                 pi.setProgress(new_val.doubleValue()/50);
             }
         });
+        slider.setMax(100);
         
         HBox hbox = new HBox(20);
         hbox.getChildren().addAll(fc,slider,pi);
@@ -74,13 +75,13 @@ public class Pergunta extends BorderPane{
 					
 					if (resposta.equals("") || (!resposta.equals("SIM") && !resposta.equals("NAO"))) {
 						
-						new TelaAux("Resposta inválida! Responda com SIM ou NAO");
+						new TelaAux("Resposta invï¿½lida! Responda com SIM ou NAO");
 					} else {
 						stage.close();
 						
 					}
 				} catch (Exception e) {
-					new TelaAux("Resposta inválida!");
+					new TelaAux("Resposta invï¿½lida!");
 				}
 			}
 		});
@@ -112,8 +113,11 @@ public class Pergunta extends BorderPane{
 		}else {
 			decisao = false;
 		}
+	    fatorCeteza = (float)pi.getProgress();
 	    
-	    
+	}
+	public float getFatorCeteza(){
+		return this.fatorCeteza;
 	}
 	public Boolean getDecisao() {
 		return decisao;

@@ -67,8 +67,8 @@ public class Motor {
 				}
 			}else{
 				Pergunta pergunta = new Pergunta("Voc� "+fato.getNome()+" ?");
-				boolean valor = pergunta.getDecisao();
-				fato.setValor(valor);
+				fato.setValor(pergunta.getDecisao());
+				System.out.println(pergunta.getFatorCeteza());
 				this.memoriaFatos.inserir(fato);
 				return fato;
 				
@@ -102,6 +102,8 @@ public class Motor {
 		for(int i=1;i<fatos.size();i++){
 			if(i == 1){
 				retorno = OR_AND(fatos.get(i-1).getFatorCerteza(), conectores.get(i-1), fatos.get(i).getFatorCerteza());
+			}else{
+				retorno = OR_AND(retorno, conectores.get(i-1), fatos.get(i).getFatorCerteza());
 			}
 		}
 		
