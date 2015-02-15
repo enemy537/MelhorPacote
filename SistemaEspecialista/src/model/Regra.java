@@ -10,12 +10,12 @@ public class Regra {
 
 	private ObservableList<Object> expressao;
 	
-	public Regra(List<Object> expressao){
+	public Regra(List<Object> expressao, float fatorCeteza){
 		this.expressao = FXCollections.observableArrayList();
 		for(Object obj : expressao){
 			this.expressao.add(obj);
 		}
-		this.fatorCerteza = 0;
+		this.fatorCerteza = fatorCeteza;
 	}
 	public ArrayList<Fato> getPremissas(){
 		ArrayList<Fato> premissas = new ArrayList<Fato>();
@@ -66,12 +66,17 @@ public class Regra {
 		this.expressao = expressao;
 	}
 	
+	public String getRegra(){
+		return this.toString();
+	}
+	
 	@Override
 	public String toString() {
 		String str = "";
 		for (Object object : expressao) {
 			str += object.toString() + " ";
 		}
+		str += "FC = "+this.fatorCerteza;
 		return str;
 	}
 }

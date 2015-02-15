@@ -63,7 +63,7 @@ public class EditarRegra extends BorderPane{
 		Fato concl = new Fato(conclusao);
 		lista.add(concl);
 			
-		Regra r = new Regra(lista);
+		Regra r = new Regra(lista, 0);
 		return r;
 	}
 	

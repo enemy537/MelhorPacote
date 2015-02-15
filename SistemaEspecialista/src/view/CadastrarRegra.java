@@ -39,6 +39,7 @@ public class CadastrarRegra extends BorderPane{
 	private Label se, ajuda, exemplo;
 	private Button salvar, cancelar;
 	private Banco banco = Main.getBanco();
+	private final ProgressIndicator pi;
 	
 	public Regra trataString(String stringOriginal){
 		
@@ -68,7 +69,7 @@ public class CadastrarRegra extends BorderPane{
 		Fato concl = new Fato(conclusao);
 		lista.add(concl);
 			
-		Regra r = new Regra(lista);
+		Regra r = new Regra(lista, (float)pi.getProgress());
 		return r;
 	}
 	//private void limpaCampos() {
@@ -96,7 +97,7 @@ public class CadastrarRegra extends BorderPane{
 		slider.setMin(0);
         slider.setMax(100);
         
-        final ProgressIndicator pi = new ProgressIndicator(0);
+        pi = new ProgressIndicator(0);
  
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,

@@ -10,6 +10,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Cell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,7 +34,7 @@ public class ListarRegras extends BorderPane{
 		TableColumn expressao = new TableColumn();
 		expressao.setText("Regra");
 		expressao.setMinWidth(1200);
-		expressao.setCellValueFactory(new PropertyValueFactory("expressao"));
+		expressao.setCellValueFactory(new PropertyValueFactory<Regra, String>("regra"));
 	        
 		excluir = new Button("Excluir");
 		excluir.setStyle("-fx-base: red;");

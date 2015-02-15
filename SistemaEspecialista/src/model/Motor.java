@@ -68,7 +68,7 @@ public class Motor {
 			}else{
 				Pergunta pergunta = new Pergunta("Voc� "+fato.getNome()+" ?");
 				fato.setValor(pergunta.getDecisao());
-				System.out.println(pergunta.getFatorCeteza());
+				fato.setFatorCerteza(pergunta.getFatorCeteza());
 				this.memoriaFatos.inserir(fato);
 				return fato;
 				
@@ -98,16 +98,20 @@ public class Motor {
 	public float calcularFC(Regra regra){
 		float retorno = 0f;
 		ArrayList<Fato> fatos = regra.getPremissas();
+		if(fatos.size() == 1){
+			return fatos.get(0).getFatorCerteza() * regra.getFatorCerteza();
+		}
 		ArrayList<Conector> conectores = regra.getConectores();
-		for(int i=1;i<fatos.size();i++){
-			if(i == 1){
-				retorno = OR_AND(fatos.get(i-1).getFatorCerteza(), conectores.get(i-1), fatos.get(i).getFatorCerteza());
-			}else{
+		for(int i=0;i<fatos.size();i++){
+			if(retorno != 0 && fatos.get(i).getValor()){
 				retorno = OR_AND(retorno, conectores.get(i-1), fatos.get(i).getFatorCerteza());
+			}
+			if(fatos.get(i).getValor() && retorno == 0){
+				retorno = fatos.get(i).getFatorCerteza();
 			}
 		}
 		
-		return retorno;
+		return retorno * regra.getFatorCerteza();
 	}
 	
 	public ObservableList<String> executar(){
@@ -120,7 +124,8 @@ public class Motor {
 				for(Regra regra : regrasMod.getRegras()){
 					Fato prova = this.provar(regra);
 					if(prova.getValor()){
-						retorno.add(prova.getNome());
+						float FC = this.calcularFC(regra);
+						retorno.add(prova.getNome() + " FC = "+FC*100);
 					}
 				}
 				break;

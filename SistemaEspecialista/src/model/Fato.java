@@ -39,6 +39,10 @@ public class Fato {
 	public float getFatorCerteza() {
 		return fatorCerteza;
 	}
+	
+	public void setFatorCerteza(float fatorCerteza) {
+		this.fatorCerteza = fatorCerteza;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
