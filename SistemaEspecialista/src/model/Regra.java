@@ -11,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Regra {
+	private float fatorCerteza;
+
 	private ObservableList<Object> expressao;
 	
 	public Regra(List<Object> expressao){
@@ -18,16 +20,29 @@ public class Regra {
 		for(Object obj : expressao){
 			this.expressao.add(obj);
 		}
+		this.fatorCerteza = 0;
 	}
 	public ArrayList<Fato> getPremissas(){
 		ArrayList<Fato> premissas = new ArrayList<Fato>();
+		Fato fato = new Fato("");
 		for(Object obj : this.expressao){
-			if (obj.getClass() == new Fato("").getClass()){
+			if (obj.getClass() == fato.getClass()){
 				if(!obj.equals(this.expressao.get(this.expressao.size()-1)))
 					premissas.add((Fato)obj);
 			}
 		}
 		return premissas;
+	}
+	public ArrayList<Conector> getConectores(){
+		ArrayList<Conector> conectores = new ArrayList<Conector>();
+		Conector conector = new Conector("");
+		for(Object obj : this.expressao){
+			if (obj.getClass() == conector.getClass()){
+				if(!obj.equals(this.expressao.get(this.expressao.size()-2)))
+					conectores.add((Conector)obj);
+			}
+		}
+		return conectores;
 	}
 	
 	public Fato getConclusao(){
@@ -46,6 +61,10 @@ public class Regra {
 			}
 			contador++;
 		}
+	}
+	
+	public float getFatorCerteza() {
+		return fatorCerteza;
 	}
 
 	public void setExpressao(ObservableList<Object> expressao) {

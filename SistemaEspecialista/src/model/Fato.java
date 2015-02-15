@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Fato {
+	private float fatorCerteza;
 	private StringProperty nome;
 	private Boolean valor;
 	
@@ -11,6 +12,7 @@ public class Fato {
 		this.nome = new SimpleStringProperty();
 		this.nome.setValue(nome);
 		this.valor = false;
+		this.fatorCerteza = 0f;
 	}
 	
 	public Boolean getValor() {
@@ -34,7 +36,10 @@ public class Fato {
 		this.nomeProperty().set(nome);
 	}
 	
-	
+	public float getFatorCerteza() {
+		return fatorCerteza;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj.getClass() != this.getClass())

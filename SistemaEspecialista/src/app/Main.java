@@ -1,6 +1,5 @@
 package app;
 
-import java.util.Arrays;
 import banco.Banco;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -9,11 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import view.TelaPrincipal;
-import model.BaseRegras;
-import model.Conector;
-import model.Fato;
-import model.Motor;
-import model.Regra;
 
 public class Main extends Application{
 	

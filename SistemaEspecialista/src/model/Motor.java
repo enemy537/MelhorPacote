@@ -66,7 +66,7 @@ public class Motor {
 					}
 				}
 			}else{
-				Pergunta pergunta = new Pergunta("Você "+fato.getNome()+" ?");
+				Pergunta pergunta = new Pergunta("Vocï¿½ "+fato.getNome()+" ?");
 				boolean valor = pergunta.getDecisao();
 				fato.setValor(valor);
 				this.memoriaFatos.inserir(fato);
@@ -87,6 +87,25 @@ public class Motor {
 			array.add(false);
 		}
 		return array;
+	}
+	private float OR_AND(float p1, Conector conector, float p2){
+		if(conector.getValor().equals("E")){
+			return Math.min(p1, p1);
+		}else{
+			return Math.max(p1, p2);
+		}
+	}
+	public float calcularFC(Regra regra){
+		float retorno = 0f;
+		ArrayList<Fato> fatos = regra.getPremissas();
+		ArrayList<Conector> conectores = regra.getConectores();
+		for(int i=1;i<fatos.size();i++){
+			if(i == 1){
+				retorno = OR_AND(fatos.get(i-1).getFatorCerteza(), conectores.get(i-1), fatos.get(i).getFatorCerteza());
+			}
+		}
+		
+		return retorno;
 	}
 	
 	public ObservableList<String> executar(){
