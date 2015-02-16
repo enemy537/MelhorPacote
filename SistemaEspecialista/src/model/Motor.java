@@ -90,9 +90,9 @@ public class Motor {
 	}
 	private float OR_AND(float p1, Conector conector, float p2){
 		if(conector.getValor().equals("E")){
-			return Math.min(p1, p1);
+			return p1*p2;
 		}else{
-			return Math.max(p1, p2);
+			return (p1+p2)-(p1*p2);
 		}
 	}
 	public float calcularFC(Regra regra){
