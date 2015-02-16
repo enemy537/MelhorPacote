@@ -51,6 +51,18 @@ public class Pergunta extends BorderPane{
         
         final ProgressIndicator pi = new ProgressIndicator(0);
  
+        pi.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number t, Number newValue) {
+                if (newValue.doubleValue() >= 1) {
+                 
+                    pi.impl_reapplyCSS();
+                    Text text = (Text) pi.lookup(".text.percentage");
+                    text.setText("100%");
+                }
+            }
+        });
+        
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                 Number old_val, Number new_val) {

@@ -9,6 +9,8 @@ import app.Main;
 import model.Conector;
 import model.Fato;
 import model.Regra;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -18,6 +20,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -27,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class EditarRegra extends BorderPane{
 	
@@ -34,6 +39,7 @@ public class EditarRegra extends BorderPane{
 	private Label se, ajuda, exemplo;
 	private Button salvar, cancelar;
 	private Banco banco = Main.getBanco();
+	private final ProgressIndicator pi;
 	
 	public Regra trataString(String stringOriginal){
 		
@@ -84,6 +90,38 @@ public class EditarRegra extends BorderPane{
 		
 		texto.setText(r.toString());
 		
+		Text fc = new Text("Fator de Confianca:  ");
+		
+		final Slider slider = new Slider();
+		slider.setMin(0);
+        slider.setMax(100);
+		
+		pi = new ProgressIndicator(0);
+        
+        pi.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number t, Number newValue) {
+                if (newValue.doubleValue() >= 1) {
+                 
+                    pi.impl_reapplyCSS();
+                    Text text = (Text) pi.lookup(".text.percentage");
+                    text.setText("100%");
+                }
+            }
+        });
+ 
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                Number old_val, Number new_val) {
+                pi.setProgress(new_val.doubleValue()/100);
+                
+            }
+        });
+        slider.setMax(100);
+        
+        HBox hbox = new HBox(20);
+        hbox.getChildren().addAll(fc,slider,pi);
+		
 		cancelar.setOnAction(new EventHandler() {
 
 			@Override
@@ -109,9 +147,9 @@ public class EditarRegra extends BorderPane{
 		hbox2.getChildren().addAll(salvar,cancelar);
 					
 		VBox vbox = new VBox(30);
-		vbox.getChildren().addAll(ajuda,exemplo,hbox1,hbox2);
+		vbox.getChildren().addAll(ajuda,exemplo,hbox1,hbox2,hbox);
 
-		
+		hbox.setAlignment(Pos.CENTER);
 		hbox1.setAlignment(Pos.CENTER);
 		hbox2.setAlignment(Pos.CENTER);
 		vbox.setAlignment(Pos.CENTER);
