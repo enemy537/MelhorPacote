@@ -1,10 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import org.controlsfx.dialog.Dialogs;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import view.Pergunta;

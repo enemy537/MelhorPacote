@@ -4,10 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Ajuda extends BorderPane{
@@ -16,10 +13,10 @@ public class Ajuda extends BorderPane{
 		
 		MenuGeral menu = new MenuGeral();
 		
-		TitledPane t1 = new TitledPane("Usuário", new Text("Nesta aba você vai encontrar o melhor pacote para determinadas condições."+"\n"+"\n"
-				+ "Instruções: " + "\n" + "\n" + "- Vá na aba Usuário e clique em Executar. "+"\n"+"- Clique em Iniciar execução e encontre o melhor pacote para você!")); 
-		TitledPane t2 = new TitledPane("Especialista", new Text("Acesso restrito ao especialista, está aba é encarregada de cadastrar os pacotes turísticos."+"\n"+"\n"
-				+ "Abas: " + "\n" + "\n" + "- Nova Regra "+"\n"+"	- Cadastra um novo pacote turísticos. "+"\n"+ "\n" + "- Regras: " +"\n" + "	-  Visualize todas as regras cadastradas."));
+		TitledPane t1 = new TitledPane("Usuï¿½rio", new Text("Nesta aba vocï¿½ vai encontrar o melhor pacote para determinadas condiï¿½ï¿½es."+"\n"+"\n"
+				+ "Instruï¿½ï¿½es: " + "\n" + "\n" + "- Vï¿½ na aba Usuï¿½rio e clique em Executar. "+"\n"+"- Clique em Iniciar execuï¿½ï¿½o e encontre o melhor pacote para vocï¿½!")); 
+		TitledPane t2 = new TitledPane("Especialista", new Text("Acesso restrito ao especialista, estï¿½ aba ï¿½ encarregada de cadastrar os pacotes turï¿½sticos."+"\n"+"\n"
+				+ "Abas: " + "\n" + "\n" + "- Nova Regra "+"\n"+"	- Cadastra um novo pacote turï¿½sticos. "+"\n"+ "\n" + "- Regras: " +"\n" + "	-  Visualize todas as regras cadastradas."));
      
 		 
 		Accordion accordion = new Accordion();
