@@ -72,10 +72,7 @@ public class CadastrarRegra extends BorderPane{
 		Regra r = new Regra(lista, (float)pi.getProgress());
 		return r;
 	}
-	//private void limpaCampos() {
-      //  texto.setText("");
-        
-//}
+
 	public CadastrarRegra(){
 		
 		MenuGeral vboxtop = new MenuGeral();
@@ -98,11 +95,24 @@ public class CadastrarRegra extends BorderPane{
         slider.setMax(100);
         
         pi = new ProgressIndicator(0);
+        
+        pi.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number t, Number newValue) {
+                if (newValue.doubleValue() >= 1) {
+                 
+                    pi.impl_reapplyCSS();
+                    Text text = (Text) pi.lookup(".text.percentage");
+                    text.setText("100%");
+                }
+            }
+        });
  
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                 Number old_val, Number new_val) {
                 pi.setProgress(new_val.doubleValue()/100);
+                
             }
         });
         slider.setMax(100);
