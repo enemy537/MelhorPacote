@@ -43,7 +43,7 @@ public class Pergunta extends BorderPane{
 		campo = new TextField();
 		campo.setPromptText("SIM ou NAO");
 		
-		fc = new Text("Fator de Confia�a:  ");
+		fc = new Text("Fator de Confianca:  ");
 		
 		final Slider slider = new Slider();
 		slider.setMin(0);
@@ -54,7 +54,7 @@ public class Pergunta extends BorderPane{
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov,
                 Number old_val, Number new_val) {
-                pi.setProgress(new_val.doubleValue()/50);
+                pi.setProgress(new_val.doubleValue()/100);
             }
         });
         slider.setMax(100);
@@ -75,13 +75,13 @@ public class Pergunta extends BorderPane{
 					
 					if (resposta.equals("") || (!resposta.equals("SIM") && !resposta.equals("NAO"))) {
 						
-						new TelaAux("Resposta inv�lida! Responda com SIM ou NAO");
+						new TelaAux("Resposta invalida! Responda com SIM ou NAO");
 					} else {
 						stage.close();
 						
 					}
 				} catch (Exception e) {
-					new TelaAux("Resposta inv�lida!");
+					new TelaAux("Resposta invalida!");
 				}
 			}
 		});
