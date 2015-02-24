@@ -1,8 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import util.RandomSet;
 import view.Pergunta;
 import bsh.EvalError;
 import bsh.Interpreter;
@@ -11,13 +14,16 @@ public class Motor {
 	private BaseRegras baseRegras;
 	private MemoriaFatos memoriaFatos;
 	private Interpreter interpretador;
-	private int regrasRestantes;
+	private RandomSet<Integer> random;
 	
 	public Motor(BaseRegras baseRegras){
 		this.baseRegras = baseRegras;
 		this.memoriaFatos = new MemoriaFatos();
 		this.interpretador = new Interpreter();
-		this.regrasRestantes = baseRegras.getRegras().size() - 1;
+		this.random = new RandomSet<Integer>();
+		for(int i=0;i<baseRegras.getRegras().size();i++){
+			random.add(i);
+		}
 	}
 	public void limparMemoria(){
 		this.memoriaFatos.clear();
@@ -75,9 +81,8 @@ public class Motor {
 	
 	public ArrayList<Object> novaPergunta(){
 		ArrayList<Object> array = new ArrayList<Object>();
-		if(regrasRestantes >= 0){
-			Fato retorno = this.inferencia(baseRegras.getRegras().get(regrasRestantes).getConclusao());
-			regrasRestantes -= 1;
+		if(random.size() > 0){
+			Fato retorno = this.inferencia(baseRegras.getRegras().get(random.pollRandom(new Random())).getConclusao());
 			array.add(retorno); array.add(true);
 		}else{
 			array.add(false);
