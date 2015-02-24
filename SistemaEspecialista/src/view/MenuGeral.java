@@ -16,12 +16,12 @@ import javafx.scene.control.MenuItem;
 public class MenuGeral extends MenuBar {
 	public MenuGeral(){
 		
-		Menu usuario = new Menu("Usuário");
+		Menu usuario = new Menu("UsuÃ¡rio");
 		Menu especialista = new Menu("Especialista");
 		Menu ajuda = new Menu("Ajuda");
 		
 		
-		//Parte de Usuário
+		//Parte de Usuï¿½rio
 		MenuItem executar = new MenuItem("Executar");
 		
 		//Parte de Especialista
@@ -29,7 +29,7 @@ public class MenuGeral extends MenuBar {
 		MenuItem regras = new MenuItem("Regras");
 
 		//Parte de Ajuda
-		MenuItem guiaTuristico = new MenuItem("Guia Turístico");
+		MenuItem guiaTuristico = new MenuItem("Guia TurÃ­stico");
 		MenuItem desenvolvedores = new MenuItem("Desenvolvedores");
 		
 		usuario.getItems().addAll(executar);

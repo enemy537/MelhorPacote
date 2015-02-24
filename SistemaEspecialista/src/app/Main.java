@@ -4,6 +4,7 @@ import banco.Banco;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -29,7 +30,8 @@ public class Main extends Application{
 		
 		primaryStage.setTitle("Melhor Pacote");
 		primaryStage.setScene(scene);
-		primaryStage.show();
+		primaryStage.getIcons().add(new Image("/image/logo.png"));
+        primaryStage.show();
 		
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			

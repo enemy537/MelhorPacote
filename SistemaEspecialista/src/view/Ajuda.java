@@ -16,10 +16,10 @@ public class Ajuda extends BorderPane{
 		
 		MenuGeral menu = new MenuGeral();
 		
-		TitledPane t1 = new TitledPane("Usuário", new Text("Nesta aba você vai encontrar o melhor pacote para determinadas condições."+"\n"+"\n"
-				+ "Instruções: " + "\n" + "\n" + "- Vá na aba Usuário e clique em Executar. "+"\n"+"- Clique em Iniciar execução e encontre o melhor pacote para você!")); 
-		TitledPane t2 = new TitledPane("Especialista", new Text("Acesso restrito ao especialista, está aba é encarregada de cadastrar os pacotes turísticos."+"\n"+"\n"
-				+ "Abas: " + "\n" + "\n" + "- Nova Regra "+"\n"+"	- Cadastra um novo pacote turísticos. "+"\n"+ "\n" + "- Regras: " +"\n" + "	-  Visualize todas as regras cadastradas."));
+		TitledPane t1 = new TitledPane("UsuÃ¡rio", new Text("Nesta aba vocÃª vai encontrar o melhor pacote para determinadas condiÃ§Ãµes."+"\n"+"\n"
+				+ "InstruÃ§Ãµes: " + "\n" + "\n" + "- Clique na aba UsuÃ¡rio, depois clique na subseÃ§Ã£o em Executar. "+"\n"+"- Clique no botÃ£o Iniciar busca de melhor pacote e encontre o melhor pacote para vocÃª!")); 
+		TitledPane t2 = new TitledPane("Especialista", new Text("SeÃ§Ã£o do especialista, estÃ¡ aba Ã© encarregada de cadastrar os pacotes turÃ­sticos e regras jÃ¡ cadastradas."+"\n"+"\n"
+				+ "Abas: " + "\n" + "\n" + "- Nova Regra "+"\n"+"	- Cadastra um novo pacote turÃ­sticos. "+"\n"+ "\n" + "- Regras: " +"\n" + "	-  Visualize todas as regras cadastradas."));
      
 		 
 		Accordion accordion = new Accordion();
