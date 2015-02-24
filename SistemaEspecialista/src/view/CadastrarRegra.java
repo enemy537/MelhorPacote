@@ -56,6 +56,9 @@ public class CadastrarRegra extends BorderPane{
 			if (!(string.equals("E") || string.equals("OU") || string.equals("ENTAO"))) {
 				premissa += string + " ";
 			} else {
+				if (premissa.equals("")) {
+					new TelaAux("Regra invalida!");
+				}
 				Fato f = new Fato(premissa);
 				lista.add(f);
 				
@@ -134,8 +137,12 @@ public class CadastrarRegra extends BorderPane{
 			
 			@Override
 			public void handle(Event arg0) {
-				banco.addObjeto(trataString(texto.getText()));
-				texto.setText("");
+				try {
+					banco.addObjeto(trataString(texto.getText()));
+					texto.setText("");
+				} catch (Exception e) {
+					new TelaAux("Regra invalida!");
+				}
 			}
 		});
 		
