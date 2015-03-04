@@ -107,7 +107,7 @@ public class Motor {
 			if(retorno != 0 && fatos.get(i).getValor()){
 				retorno = OR_AND(retorno, conectores.get(i-1), fatos.get(i).getFatorCerteza());
 			}
-			if(fatos.get(i).getValor() && retorno == 0){
+			if(retorno == 0){
 				retorno = fatos.get(i).getFatorCerteza();
 			}
 		}
@@ -126,7 +126,8 @@ public class Motor {
 					Fato prova = this.provar(regra);
 					if(prova.getValor()){
 						float FC = this.calcularFC(regra);
-						retorno.add(prova.getNome() + " FC = "+FC*100);
+						if(FC > 0)
+							retorno.add(prova.getNome() + " FC = "+FC*100);
 					}
 				}
 				break;
