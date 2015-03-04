@@ -140,8 +140,10 @@ public class CadastrarRegra extends BorderPane{
 				try {
 					banco.addObjeto(trataString(texto.getText()));
 					texto.setText("");
+					slider.setValue(0);
+					new TelaAux("Regra cadastrada com sucesso!");
 				} catch (Exception e) {
-					new TelaAux("Regra invalida!");
+					new TelaAux("Regra invalida! Siga o exemplo.");
 				}
 			}
 		});
