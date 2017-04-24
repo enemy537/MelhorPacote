@@ -2,9 +2,6 @@ package view;
 
 import java.util.ArrayList;
 
-import org.controlsfx.dialog.Dialog;
-import org.controlsfx.dialog.Dialogs;
-
 import model.Fato;
 import model.Motor;
 import banco.Banco;
@@ -15,6 +12,8 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,37 +27,37 @@ public class Executar extends BorderPane{
 	private Button iniciar;
 	private Motor motor;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Executar(){
 		
 		MenuGeral vboxtop = new MenuGeral();
-		Banco banco = Main.getBanco();
+		final Banco banco = Main.getBanco();
 		
 		Image logo = new Image(getClass().getResourceAsStream("/image/logo.png"));
 		iniciar = new Button("Iniciar busca do melhor pacote", new ImageView(logo));
 		
 		iniciar.setOnAction(new EventHandler() {
-			
 			@Override
 			public void handle(Event arg0) {
 				motor = new Motor(banco.listarRegras());
 				motor.limparMemoria();
 				ObservableList<String> respostas = motor.executar();
 				if(respostas.size() == 0){
-					Dialogs.create()
-					.title("Nenhum pacote encontrado.")
-					.masthead(null)
-					.message("Nenhum pacote se adequa a suas necessidades.")
-					.showInformation();
+					Alert alt = new Alert(AlertType.ERROR);
+					alt.setTitle("Xiii... não dei.");
+					alt.setHeaderText("Nenhum pacote encontrado.");
+					alt.setContentText("Nenhum pacote se adequa a suas necessidades.");
+					alt.show();
 				}else{
 					String saida = "";
 					for(String string : respostas){
 						saida += string + "\n";
 					}
-					Dialogs.create()
-					.title("Melhor Pacote encontrado.")
-					.masthead(null)
-					.message(saida)
-					.showInformation();
+					Alert alt = new Alert(AlertType.INFORMATION);
+					alt.setTitle("Encontramos algo!");
+					alt.setHeaderText("Melhor Pacote encontrado.");
+					alt.setContentText(saida);
+					alt.show();
 				}
 			}	
 		});

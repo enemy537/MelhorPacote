@@ -28,7 +28,7 @@ public class JanelaExecucao extends BorderPane {
 		MenuGeral vboxtop = new MenuGeral();
 		
 		sim = new Button("Sim");
-		nao = new Button("Não");
+		nao = new Button("NÃ£o");
 		
 		VBox vbox1 = new VBox(20);
 		vbox1.getChildren().addAll(sim,nao);

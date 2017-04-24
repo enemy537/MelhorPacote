@@ -79,7 +79,7 @@ public class CadastrarRegra extends BorderPane{
 	public CadastrarRegra(){
 		
 		MenuGeral vboxtop = new MenuGeral();
-		Banco banco = Main.getBanco();
+		final Banco banco = Main.getBanco();
 		
 		ajuda = new Label("Utilize 'E', 'OU' e 'ENTAO' como conectores");
 		exemplo = new Label("Ex.: SE gosta de praia OU quer gastar ate R$ 500 ENTAO pacote = X");
